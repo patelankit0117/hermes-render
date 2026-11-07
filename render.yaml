@@ -19,10 +19,10 @@
 
 services:
   - type: web
-    name: hermes
+    name: hermes-agent
     runtime: docker
-    region: oregon
-    plan: standard
+    region: singapore
+    plan: free
     # Render builds the image from this repo's Dockerfile on every deploy.
     # The Dockerfile FROMs the pinned upstream Hermes image, adds Render
     # tooling + the skill bundle, and sets ENTRYPOINT to our bootstrap wrapper — so
@@ -30,12 +30,7 @@ services:
     dockerfilePath: ./Dockerfile
     autoDeployTrigger: off
     healthCheckPath: /api/status
-
-    disk:
-      name: hermes-data
-      mountPath: /opt/data
-      sizeGB: 5
-
+  
     envVars:
       # The Blueprint only carries vars that change how the container boots
       # or that wire up the bundled Render tools. All provider keys, tool
